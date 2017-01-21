@@ -13,8 +13,8 @@ public enum PlayerMode
 [System.Serializable]
 public enum PlayerTeam
 {
-    TEAM_1,
-    TEAM_2
+    RED_TEAM,
+    BLUE_TEAM
 }
 
 public class PlayerId : MonoBehaviour

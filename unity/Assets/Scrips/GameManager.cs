@@ -5,7 +5,20 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour 
 {
+	private static GameManager _instance;
+	public static GameManager Instance()
+	{
+		return _instance;
+	}
+
+	private void Awake ()
+	{
+		_instance = this;
+	}
+
 	private float timeLeft;
+
+	public GameOver gameOver;
 
 	public Image min0;
 	public Image min1;
@@ -44,7 +57,7 @@ public class GameManager : MonoBehaviour
 
 		timeLeft--;
 
-		if (timeLeft < 0) 
+		if (timeLeft < 0)
 		{
 			//Se termino;
 		}
@@ -57,5 +70,11 @@ public class GameManager : MonoBehaviour
 		{
 			StartCoroutine (UpdateTimer());
 		}
+	}
+
+	public void GameOver(PlayerTeam team)
+	{
+		min0.transform.parent.gameObject.SetActive (false);
+		gameOver.ShowGameOver (team == PlayerTeam.BLUE_TEAM);
 	}
 }

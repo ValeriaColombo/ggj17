@@ -55,6 +55,11 @@ public class PlayerController : MonoBehaviour
         {
             UpdateStomper();
         }
+
+		if(transform.localPosition.y < -30)
+		{
+			PlayerIsDead ();
+		}
     }
 
     public void TakeDamage()
@@ -65,9 +70,15 @@ public class PlayerController : MonoBehaviour
         playerLives--;
         if(playerLives == 0)
         {
-            Debug.LogError("Game over, perdió: " + playerId.team);
+			PlayerIsDead ();
         }
     }
+
+	private void PlayerIsDead()
+	{
+		gameObject.SetActive (false);
+		GameManager.Instance ().GameOver (playerId.team);
+	}
 
     void UpdateStomper()
     {

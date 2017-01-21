@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public PlayerId playerId;
 
-    public float speed = 20f;
+    public float speed;
 
     private Rigidbody rb;
     private Transform tr;
@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        speed = Configs.Instance().PlayerNormalSpeed;
         playerId = GetComponent<PlayerId>();
     }
 

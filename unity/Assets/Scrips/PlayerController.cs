@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public PlayerId playerId;
     PlayerState state = PlayerState.IDLE;
 
+    PlayerMovement playerMovement;
+
     // COW DROPPER
     public Transform cowHoldingPlace;
 
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
         playerId = GetComponent<PlayerId>();
         waveGenerator = FindObjectOfType<DummyWaveGenerator>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -67,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
-        isHoldingCow = false;
+        ToggleHolding(false);
         cow = null;
 
         playerLives--;
@@ -144,8 +147,14 @@ public class PlayerController : MonoBehaviour
 
         pickUpCooldown = pickUpCooldownTime;
         if(cow != null) cow.DropAt(cowHoldingPlace.position);
-        isHoldingCow = false;
+        ToggleHolding(false);
         cow = null;
+    }
+
+    void ToggleHolding(bool holding)
+    {
+        isHoldingCow = holding;
+        playerMovement.speed = holding ? Configs.Instance().HoldingCowPlayerSpeed : Configs.Instance().PlayerNormalSpeed;
     }
 
     public void CanPickCow(CowPickUp cow, bool inPickUpArea)
@@ -162,7 +171,7 @@ public class PlayerController : MonoBehaviour
         if (pickUpCooldown > 0f) return;
 
         if (cow == null) return;
-        isHoldingCow = true;
+        ToggleHolding(true);
         cow.GrabAt(cowHoldingPlace.position, transform);
     }
 

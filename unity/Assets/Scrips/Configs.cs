@@ -27,4 +27,7 @@ public class Configs : MonoBehaviour {
 
 	public float StompCooldown = 2;
 	public float PickUpCooldown = 1;
+
+    public float PlayerNormalSpeed = 5f;
+    public float HoldingCowPlayerSpeed = 2.5f;
 }

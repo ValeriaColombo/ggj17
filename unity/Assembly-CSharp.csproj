@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scrips\Billboard.cs" />
      <Compile Include="Assets\Scrips\Configs.cs" />
      <Compile Include="Assets\Scrips\Cow.cs" />
+     <Compile Include="Assets\Scrips\CowBlast.cs" />
      <Compile Include="Assets\Scrips\CowPickUp.cs" />
      <Compile Include="Assets\Scrips\CowSpawner.cs" />
      <Compile Include="Assets\Scrips\DummyWaveGenerator.cs" />
@@ -61,8 +62,14 @@
      <Compile Include="Assets\Scrips\PlayerId.cs" />
      <Compile Include="Assets\Scrips\PlayerMovement.cs" />
      <Compile Include="Assets\Scrips\Wave.cs" />
+     <Compile Include="Assets\Scrips\menu\CharSelectionMenu.cs" />
+     <Compile Include="Assets\Scrips\menu\PlayerBtn.cs" />
+     <Compile Include="Assets\Scrips\menu\Splash.cs" />
      <Compile Include="Assets\XboxCtrlrInputExample\MoveLaser.cs" />
      <Compile Include="Assets\XboxCtrlrInputExample\MovePlayer.cs" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -77,6 +84,9 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Purchasing">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>

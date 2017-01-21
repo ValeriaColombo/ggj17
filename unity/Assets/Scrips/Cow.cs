@@ -26,6 +26,11 @@ public class Cow : MonoBehaviour
         pickUp = GetComponentInChildren<CowPickUp>();
     }
 
+    private void Start()
+    {
+        bombTime = Configs.Instance().BombTime;
+    }
+
     public void Reset()
     {
         blast.SetActive(false);

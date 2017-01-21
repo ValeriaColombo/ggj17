@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour
     // COW DROPPER
     public Transform cowHoldingPlace;
 
-    public float dropCooldownTime = 5f;
-    private float dropCooldown;
+    public float pickUpCooldownTime = 5f;
+    private float pickUpCooldown;
 
     public bool isInPickUpArea;
     private bool isHoldingCow;
@@ -41,6 +41,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        pickUpCooldownTime = Configs.Instance().PickUpCooldown;
+        stompCooldownTime = Configs.Instance().StompCooldown;
+
         playerId = GetComponent<PlayerId>();
         waveGenerator = FindObjectOfType<DummyWaveGenerator>();
     }
@@ -129,9 +132,9 @@ public class PlayerController : MonoBehaviour
 
     void UpdateDropCoolDown()
     {
-        if (!isHoldingCow && dropCooldown > 0f)
+        if (!isHoldingCow && pickUpCooldown > 0f)
         {
-            dropCooldown -= Time.deltaTime;
+            pickUpCooldown -= Time.deltaTime;
         }
     }
 
@@ -139,7 +142,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isHoldingCow || isHoldingCow && IsPressingPickUp()) return;
 
-        dropCooldown = dropCooldownTime;
+        pickUpCooldown = pickUpCooldownTime;
         if(cow != null) cow.DropAt(cowHoldingPlace.position);
         isHoldingCow = false;
         cow = null;
@@ -156,7 +159,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isHoldingCow || !isInPickUpArea) return;
         if (!IsPressingPickUp()) return;
-        if (dropCooldown > 0f) return;
+        if (pickUpCooldown > 0f) return;
 
         if (cow == null) return;
         isHoldingCow = true;

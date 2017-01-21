@@ -15,6 +15,7 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
+    public int playerLives = 5;
     public PlayerId playerId;
     PlayerState state = PlayerState.IDLE;
 
@@ -51,6 +52,18 @@ public class PlayerController : MonoBehaviour
         else
         {
             UpdateStomper();
+        }
+    }
+
+    public void TakeDamage()
+    {
+        isHoldingCow = false;
+        cow = null;
+
+        playerLives--;
+        if(playerLives == 0)
+        {
+            print("Game over bitches");
         }
     }
 

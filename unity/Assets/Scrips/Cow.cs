@@ -13,6 +13,7 @@ public class Cow : MonoBehaviour
 	private CowState state;
 	private bool isTouchingTheFloor;
 
+    public GameObject blast;
     private float bombTime = 3f;
     private float countdown;
 
@@ -60,14 +61,15 @@ public class Cow : MonoBehaviour
 
     void Detonate()
     {
-        print("Bomb EXPLODED");
         state = CowState.EXPLODING;
+        blast.SetActive(true);
         Invoke("Kill", 0.5f);
     }
 
     void Kill()
     {
-        Destroy(this.gameObject);
+        blast.SetActive(false);
+        ReturnToPool();
     }
 
 	void Update () 
@@ -95,10 +97,15 @@ public class Cow : MonoBehaviour
 
 		if (transform.localPosition.y < -30) 
 		{
-			gameObject.SetActive (false);
-			GameObjectsPool.Instance ().FreeThisCow (gameObject);
+            ReturnToPool();
 		}
 
         CheckCountdown();
 	}
+
+    void ReturnToPool()
+    {
+        gameObject.SetActive(false);
+        GameObjectsPool.Instance().FreeThisCow(gameObject);
+    }
 }

@@ -24,7 +24,8 @@ public class Cow : MonoBehaviour
 
     public void Reset()
     {
-		pickUp.isBeingHold = false;
+        blast.SetActive(false);
+        pickUp.isBeingHold = false;
         StopAllCoroutines();
         blast.SetActive(false);
         state = CowState.INACTIVE;
@@ -59,8 +60,14 @@ public class Cow : MonoBehaviour
         }
         else
         {
-            StartCoroutine(Detonate());
+            BlowUp();
         }
+    }
+
+    public void BlowUp()
+    {
+        if (state == CowState.EXPLODING) return;
+        StartCoroutine(Detonate());
     }
 
     IEnumerator Detonate()
@@ -68,7 +75,6 @@ public class Cow : MonoBehaviour
         state = CowState.EXPLODING;
         blast.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        blast.SetActive(false);
         ReturnToPool();
     }
 

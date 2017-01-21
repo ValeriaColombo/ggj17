@@ -12,6 +12,7 @@ public enum PlayerMode
 
 public class PlayerId : MonoBehaviour
 {
+    public bool useKeyboard;
     public PlayerMode playerMode;
     public XboxController controller;
 }

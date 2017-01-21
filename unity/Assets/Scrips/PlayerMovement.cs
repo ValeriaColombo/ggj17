@@ -28,7 +28,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update ()
     {
-        CheckInput();
+        if (playerId.useKeyboard)
+        {
+            CheckInputKeyboard();
+        }
+        else
+        {
+            CheckInput();
+        }
         tr.Translate(verticalAxis, 0, horizontalAxis);
     }
 
@@ -40,7 +47,16 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckInputKeyboard()
     {
-        horizontalAxis = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        verticalAxis = -Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        switch (playerId.controller)
+        {
+            case XboxController.First:
+                horizontalAxis = Input.GetAxis("Horizontal1") * Time.deltaTime * speed;
+                verticalAxis = -Input.GetAxis("Vertical1") * Time.deltaTime * speed;
+                break;
+            case XboxController.Second:
+                horizontalAxis = Input.GetAxis("Horizontal2") * Time.deltaTime * speed;
+                verticalAxis = -Input.GetAxis("Vertical2") * Time.deltaTime * speed;
+                break;
+        }
     }
 }

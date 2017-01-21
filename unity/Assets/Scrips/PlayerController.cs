@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(playerId.playerMode == PlayerMode.COW_DROPPER)
+        if (playerId.playerMode == PlayerMode.COW_DROPPER)
         {
             UpdateCowDropper();
         }
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     void CheckStomp()
     {
-        if(!IsPressingStomp())
+        if (!IsPressingStomp())
         {
             if (hitMax)
             {
@@ -139,11 +139,17 @@ public class PlayerController : MonoBehaviour
 
     bool IsPressingStomp()
     {
-        return XCI.GetAxis(XboxAxis.RightTrigger, playerId.controller) > 0.5f;
+        if(playerId.useKeyboard)
+            return Input.GetKey(KeyCode.Space);
+        else
+            return XCI.GetAxis(XboxAxis.RightTrigger, playerId.controller) > 0.5f;
     }
 
     bool IsPressingPickUp()
     {
-        return XCI.GetAxis(XboxAxis.RightTrigger, playerId.controller) > 0.5f;
+        if (playerId.useKeyboard)
+            return Input.GetKey(KeyCode.P);
+        else
+            return XCI.GetAxis(XboxAxis.RightTrigger, playerId.controller) > 0.5f;
     }
 }

@@ -113,10 +113,9 @@ public class PlayerController : MonoBehaviour
         if (!isHoldingCow || isHoldingCow && IsPressingPickUp()) return;
 
         dropCooldown = dropCooldownTime;
-        cow.DropAt(cowHoldingPlace.position);
-
-        cow = null;
+        if(cow != null) cow.DropAt(cowHoldingPlace.position);
         isHoldingCow = false;
+        cow = null;
     }
 
     public void CanPickCow(CowPickUp cow, bool inPickUpArea)

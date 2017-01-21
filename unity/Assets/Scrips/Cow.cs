@@ -13,6 +13,9 @@ public class Cow : MonoBehaviour
 	private CowState state;
 	private bool isTouchingTheFloor;
 
+    private float bombTime = 3f;
+    private float countdown;
+
     private void Awake()
     {
         pickUp = GetComponentInChildren<CowPickUp>();
@@ -35,14 +38,50 @@ public class Cow : MonoBehaviour
 		}
 	}
 
+    void StartBombCountdown()
+    {
+        state = CowState.ACTIVE;
+        countdown = bombTime;
+    }
+
+    void CheckCountdown()
+    {
+        if (state != CowState.ACTIVE) return;
+
+        if(countdown > 0)
+        {
+            countdown -= Time.deltaTime;
+        }
+        else
+        {
+            Detonate();
+        }
+    }
+
+    void Detonate()
+    {
+        print("Bomb EXPLODED");
+        state = CowState.EXPLODING;
+        Invoke("Kill", 0.5f);
+    }
+
+    void Kill()
+    {
+        Destroy(this.gameObject);
+    }
+
 	void Update () 
 	{
         var rb = GetComponent<Rigidbody>();
         if (pickUp.isBeingHold)
         {
-            state = CowState.ACTIVE;
             rb.velocity = Vector3.zero;
             rb.isKinematic = true;
+
+            if(state != CowState.ACTIVE)
+            {
+                StartBombCountdown();
+            }
         }
         else
         {
@@ -59,5 +98,7 @@ public class Cow : MonoBehaviour
 			gameObject.SetActive (false);
 			GameObjectsPool.Instance ().FreeThisCow (gameObject);
 		}
+
+        CheckCountdown();
 	}
 }

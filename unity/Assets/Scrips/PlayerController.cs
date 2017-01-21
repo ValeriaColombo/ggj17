@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     private CowPickUp cow;
 
     // STOMPER
+    public Animator waveAnimator;
+
     bool hitMax;
     bool hitMin;
 
@@ -96,6 +98,7 @@ public class PlayerController : MonoBehaviour
         if (stompCooldown > 0) return;
         stompCooldown = stompCooldownTime;
         waveGenerator.GenerateWave(transform.position);
+        waveAnimator.SetTrigger("stomp");
     }
 
     void UpdateStompCoolDown()

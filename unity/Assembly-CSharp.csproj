@@ -46,7 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scrips\CowSpawner.cs" />
      <Compile Include="Assets\Scrips\DummyWaveGenerator.cs" />
+     <Compile Include="Assets\Scrips\Lechegedon.cs" />
      <Compile Include="Assets\Scrips\Wave.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

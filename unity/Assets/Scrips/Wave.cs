@@ -25,7 +25,7 @@ public class Wave : MonoBehaviour
 
 			Vector3 direction = new Vector3(bombCenter.x - waveCenter.x, 0, bombCenter.z - waveCenter.z);
 			float distance = Vector3.Distance(bombCenter, waveCenter);
-			float extraImpulse = Mathf.Max (0.1f, (4 - distance));
+			float extraImpulse = Mathf.Max (0.1f, (Configs.Instance().WaveIntensity - distance));
 			Vector3 force = new Vector3(direction.x * extraImpulse, extraImpulse, direction.z * extraImpulse);
 
 			//Debug.Log ("waveCenter: "+ waveCenter + " / bombCenter: "+bombCenter + " / distance: " +direction +" / magnitude: " + distance + " / force: " + force);

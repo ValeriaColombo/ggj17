@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
 
+public enum PlayerState
+{
+    IDLE,
+    WALKING,
+    HOLDING,
+    DROP_COOLDOWN,
+    HIT,
+    STOMPING
+}
+
 public class PlayerController : MonoBehaviour
 {
     public PlayerId playerId;
@@ -21,7 +31,24 @@ public class PlayerController : MonoBehaviour
         playerId = GetComponent<PlayerId>();
     }
 
-    void Update()
+    private void Update()
+    {
+        if(playerId.playerMode == PlayerMode.COW_DROPPER)
+        {
+            UpdateCowDropper();
+        }
+        else
+        {
+            UpdateStomper();
+        }
+    }
+
+    void UpdateStomper()
+    {
+
+    }
+
+    void UpdateCowDropper()
     {
         CheckPickCow();
         CheckReleaseCow();

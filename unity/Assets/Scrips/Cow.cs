@@ -81,12 +81,12 @@ public class Cow : MonoBehaviour
     {
         if (state == CowState.EXPLODING) return;
         StartCoroutine(Detonate());
-        sliderBar.SetActive(false);
     }
 
     IEnumerator Detonate()
     {
         state = CowState.EXPLODING;
+        sliderBar.SetActive(false);
         blast.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         ReturnToPool();
@@ -100,7 +100,7 @@ public class Cow : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.isKinematic = true;
 
-            if(state != CowState.ACTIVE)
+            if(state == CowState.INACTIVE)
             {
                 StartBombCountdown();
             }

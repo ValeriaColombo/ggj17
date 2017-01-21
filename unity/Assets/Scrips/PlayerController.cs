@@ -1,55 +1,71 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 
 public class PlayerController : MonoBehaviour
 {
+    public PlayerId playerId;
+
     public Transform cowHoldingPlace;
 
     public float dropCooldownTime = 5f;
     private float dropTime;
 
+    public bool isInPickUpArea;
+    private bool isHoldingCow;
     private CowPickUp cow;
+
+    private void Start()
+    {
+        playerId = GetComponent<PlayerId>();
+    }
 
     void Update()
     {
-        CheckInput();
+        CheckPickCow();
+        CheckReleaseCow();
         UpdateCoolDown();
-    }
-
-    void CheckInput()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            ReleaseCow();
-        }
     }
 
     void UpdateCoolDown()
     {
-        if (cow == null && dropTime > 0f)
+        if (!isHoldingCow && dropTime > 0f)
         {
             dropTime -= Time.deltaTime;
         }
     }
 
-    void ReleaseCow()
+    void CheckReleaseCow()
     {
-        if (cow == null) return;
+        if (!isHoldingCow || isHoldingCow && IsPressingPickUp()) return;
 
         dropTime = dropCooldownTime;
         cow.DropAt(cowHoldingPlace.position);
 
         cow = null;
+        isHoldingCow = false;
     }
 
-    public void PickCow(CowPickUp cow)
+    public void CanPickCow(CowPickUp cow, bool inPickUpArea)
     {
+        isInPickUpArea = inPickUpArea;
+        if (isHoldingCow) return;
+        this.cow = cow;
+    }
+
+    public void CheckPickCow()
+    {
+        if (isHoldingCow || !isInPickUpArea) return;
+        if (!IsPressingPickUp()) return;
         if (dropTime > 0f) return;
 
-        print("Picked a cow");
+        isHoldingCow = true;
+        cow.GrabAt(cowHoldingPlace.position, transform);
+    }
 
-        this.cow = cow;
-        cow.PlaceAt(cowHoldingPlace.position, transform);
+    bool IsPressingPickUp()
+    {
+        return XCI.GetAxis(XboxAxis.RightTrigger, playerId.controller) > 0.5f;
     }
 }

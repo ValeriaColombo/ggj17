@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cow : MonoBehaviour
 {
@@ -13,12 +14,15 @@ public class Cow : MonoBehaviour
     private CowState state;
     private bool isTouchingTheFloor;
 
+    public GameObject sliderBar;
+    public Slider slider;
     public GameObject blast;
     private float bombTime = 3f;
     private float countdown;
 
     private void Awake()
     {
+        sliderBar.SetActive(false);
         pickUp = GetComponentInChildren<CowPickUp>();
     }
 
@@ -47,6 +51,8 @@ public class Cow : MonoBehaviour
     void StartBombCountdown()
     {
         state = CowState.ACTIVE;
+        sliderBar.SetActive(true);
+        slider.value = 1f;
         countdown = bombTime;
     }
 
@@ -57,6 +63,7 @@ public class Cow : MonoBehaviour
         if (countdown > 0)
         {
             countdown -= Time.deltaTime;
+            UpdateBar((countdown / bombTime));
         }
         else
         {
@@ -64,10 +71,17 @@ public class Cow : MonoBehaviour
         }
     }
 
+    void UpdateBar(float normVal)
+    {
+        if (state == CowState.EXPLODING) return;
+        slider.value = normVal;
+    }
+
     public void BlowUp()
     {
         if (state == CowState.EXPLODING) return;
         StartCoroutine(Detonate());
+        sliderBar.SetActive(false);
     }
 
     IEnumerator Detonate()

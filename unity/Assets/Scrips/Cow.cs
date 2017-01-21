@@ -24,6 +24,7 @@ public class Cow : MonoBehaviour
 
     public void Reset()
     {
+        StopAllCoroutines();
         blast.SetActive(false);
         state = CowState.INACTIVE;
         isTouchingTheFloor = false;

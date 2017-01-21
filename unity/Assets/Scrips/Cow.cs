@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cow : MonoBehaviour 
+public class Cow : MonoBehaviour
 {
-	enum CowState 
-	{
-		INACTIVE, ACTIVE, EXPLODING
-	}
+    enum CowState
+    {
+        INACTIVE, ACTIVE, EXPLODING
+    }
 
     private CowPickUp pickUp;
-	private CowState state;
-	private bool isTouchingTheFloor;
+    private CowState state;
+    private bool isTouchingTheFloor;
 
     public GameObject blast;
     private float bombTime = 3f;
@@ -23,21 +23,22 @@ public class Cow : MonoBehaviour
     }
 
     public void Reset()
-	{
-		state = CowState.INACTIVE;
-		isTouchingTheFloor = false;
-	}
+    {
+        blast.SetActive(false);
+        state = CowState.INACTIVE;
+        isTouchingTheFloor = false;
+    }
 
-	void OnCollisionEnter(Collision col)
-	{
-		if (state == CowState.INACTIVE || state == CowState.EXPLODING)
-		{
-			if (col.gameObject.name.IndexOf ("floor") > -1) 
-			{
-				isTouchingTheFloor = true;
-			}
-		}
-	}
+    void OnCollisionEnter(Collision col)
+    {
+        if (state == CowState.INACTIVE || state == CowState.EXPLODING)
+        {
+            if (col.gameObject.name.IndexOf("floor") > -1)
+            {
+                isTouchingTheFloor = true;
+            }
+        }
+    }
 
     void StartBombCountdown()
     {
@@ -49,25 +50,21 @@ public class Cow : MonoBehaviour
     {
         if (state != CowState.ACTIVE) return;
 
-        if(countdown > 0)
+        if (countdown > 0)
         {
             countdown -= Time.deltaTime;
         }
         else
         {
-            Detonate();
+            StartCoroutine(Detonate());
         }
     }
 
-    void Detonate()
+    IEnumerator Detonate()
     {
         state = CowState.EXPLODING;
         blast.SetActive(true);
-        Invoke("Kill", 0.5f);
-    }
-
-    void Kill()
-    {
+        yield return new WaitForSeconds(0.5f);
         blast.SetActive(false);
         ReturnToPool();
     }

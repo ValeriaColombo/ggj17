@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         playerLives--;
         if(playerLives == 0)
         {
-            print("Game over bitches");
+            Debug.LogError("Game over, perdió: " + playerId.team);
         }
     }
 

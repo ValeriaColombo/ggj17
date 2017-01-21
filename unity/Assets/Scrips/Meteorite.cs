@@ -10,7 +10,7 @@ public class Meteorite : MonoBehaviour {
 	private bool exploding;
 	private float time_explosion;
 
-	void Awake()
+	public void Reset()
 	{
 		drop.enabled = true;
 		explosion.gameObject.SetActive (false);

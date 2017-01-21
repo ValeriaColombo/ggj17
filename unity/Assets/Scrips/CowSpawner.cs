@@ -33,7 +33,7 @@ public class CowSpawner : MonoBehaviour
 
 	private void SpawnCow()
 	{
-		timer = Random.Range (8f, 10f);
+		timer = Random.Range (Configs.Instance().CowSpawnTimeFrom, Configs.Instance().CowSpawnTimeTo);
 
 		GameObject cow = GameObjectsPool.Instance ().GiveMeACow ();
 		cow.transform.SetParent (transform.parent);

@@ -28,7 +28,9 @@ public class Wave : MonoBehaviour
 			float extraImpulse = Mathf.Max (0.1f, (4 - distance));
 			Vector3 force = new Vector3(direction.x * extraImpulse, extraImpulse, direction.z * extraImpulse);
 
-			Debug.Log ("waveCenter: "+ waveCenter + " / bombCenter: "+bombCenter + " / distance: " +direction +" / magnitude: " + distance + " / force: " + force);
+			//Debug.Log ("waveCenter: "+ waveCenter + " / bombCenter: "+bombCenter + " / distance: " +direction +" / magnitude: " + distance + " / force: " + force);
+
+			bomb.GetComponent<Cow> ().TouchedByPlayer ();
 
 			Rigidbody rb = bomb.GetComponent<Rigidbody> ();
 			rb.velocity = Vector3.zero;

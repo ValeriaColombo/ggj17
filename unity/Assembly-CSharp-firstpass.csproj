@@ -6,10 +6,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C3DA89E1-70C6-7D6C-993E-C8F831D35880}</ProjectGuid>
+    <ProjectGuid>{518622B2-9050-A153-E465-3E4BD155181A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
@@ -46,20 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scrips\Billboard.cs" />
-     <Compile Include="Assets\Scrips\Cow.cs" />
-     <Compile Include="Assets\Scrips\CowPickUp.cs" />
-     <Compile Include="Assets\Scrips\CowSpawner.cs" />
-     <Compile Include="Assets\Scrips\DummyWaveGenerator.cs" />
-     <Compile Include="Assets\Scrips\GameObjectsPool.cs" />
-     <Compile Include="Assets\Scrips\Lechegedon.cs" />
-     <Compile Include="Assets\Scrips\Meteorite.cs" />
-     <Compile Include="Assets\Scrips\PlayerController.cs" />
-     <Compile Include="Assets\Scrips\PlayerId.cs" />
-     <Compile Include="Assets\Scrips\PlayerMovement.cs" />
-     <Compile Include="Assets\Scrips\Wave.cs" />
-     <Compile Include="Assets\XboxCtrlrInputExample\MoveLaser.cs" />
-     <Compile Include="Assets\XboxCtrlrInputExample\MovePlayer.cs" />
+     <Compile Include="Assets\Plugins\XboxCtrlrInput.cs" />
+     <Compile Include="Assets\Plugins\XboxCtrlrInput_Helpers\XciAxisDeadzoneData.cs" />
+     <Compile Include="Assets\Plugins\XboxCtrlrInput_Helpers\XciInputManagerClone.cs" />
+     <Compile Include="Assets\Plugins\XboxCtrlrInput_Helpers\XciInputManagerReader.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -81,10 +71,6 @@
  <Reference Include="XInputDotNetPure">
  <HintPath>C:/Users/ValeZumZum/Desktop/dev/ggj17/unity/Assets/Plugins/x86_64/XInputDotNetPure.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{518622B2-9050-A153-E465-3E4BD155181A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

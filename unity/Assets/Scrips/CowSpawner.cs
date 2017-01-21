@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CowSpawner : MonoBehaviour 
 {
-	public GameObject cowPrefab;
-
+	// X fuerza hacia los costados, Z fuerza hacia adelante
 	public float closeFromX;
 	public float closeToX;
 	public float closeFromZ;
@@ -36,20 +35,22 @@ public class CowSpawner : MonoBehaviour
 	{
 		timer = Random.Range (8f, 10f);
 
-		GameObject cow = Instantiate (cowPrefab);
+		GameObject cow = GameObjectsPool.Instance ().GiveMeACow ();
 		cow.transform.SetParent (transform.parent);
 		cow.transform.localPosition = transform.localPosition;
+		cow.GetComponent<Cow> ().Reset ();
 
 		Vector3 force;
-		if (Random.Range (0, 10) < 5)
+		if (Random.Range (0, 10) < 1)
 		{
-			force = new Vector3 (Random.Range(farFromX, farToX), 0, Random.Range(farFromZ, farToZ));
+			force = new Vector3 (Random.Range(farFromX, farToX), 5, Random.Range(farFromZ, farToZ));
 		}
 		else
 		{
-			force = new Vector3 (Random.Range(closeFromX, closeToX), 0, Random.Range(closeFromZ, closeToZ));
+			force = new Vector3 (Random.Range(closeFromX, closeToX), 2, Random.Range(closeFromZ, closeToZ));
 		}
 
+		cow.GetComponent<Rigidbody> ().velocity = Vector3.zero;
 		cow.GetComponent<Rigidbody> ().AddForce (force, ForceMode.Impulse);
 	}
 }

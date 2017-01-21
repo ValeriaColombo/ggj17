@@ -9,18 +9,19 @@ public class Cow : MonoBehaviour
 		INACTIVE, ACTIVE, EXPLODING
 	}
 
+    private CowPickUp pickUp;
 	private CowState state;
 	private bool isTouchingTheFloor;
 
-	public void Reset()
+    private void Awake()
+    {
+        pickUp = GetComponentInChildren<CowPickUp>();
+    }
+
+    public void Reset()
 	{
 		state = CowState.INACTIVE;
 		isTouchingTheFloor = false;
-	}
-
-	public void TouchedByPlayer()
-	{
-		state = CowState.ACTIVE;
 	}
 
 	void OnCollisionEnter(Collision col)
@@ -36,9 +37,21 @@ public class Cow : MonoBehaviour
 
 	void Update () 
 	{
+        var rb = GetComponent<Rigidbody>();
+        if (pickUp.isBeingHold)
+        {
+            state = CowState.ACTIVE;
+            rb.velocity = Vector3.zero;
+            rb.isKinematic = true;
+        }
+        else
+        {
+            rb.isKinematic = false;
+        }
+
 		if ((state == CowState.INACTIVE || state == CowState.EXPLODING) && isTouchingTheFloor) 
 		{
-			GetComponent<Rigidbody> ().velocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
 		}
 
 		if (transform.localPosition.y < -30) 

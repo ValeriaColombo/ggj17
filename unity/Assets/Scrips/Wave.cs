@@ -30,8 +30,6 @@ public class Wave : MonoBehaviour
 
 			//Debug.Log ("waveCenter: "+ waveCenter + " / bombCenter: "+bombCenter + " / distance: " +direction +" / magnitude: " + distance + " / force: " + force);
 
-			bomb.GetComponent<Cow> ().TouchedByPlayer ();
-
 			Rigidbody rb = bomb.GetComponent<Rigidbody> ();
 			rb.velocity = Vector3.zero;
 			rb.AddForce (force, ForceMode.Impulse);

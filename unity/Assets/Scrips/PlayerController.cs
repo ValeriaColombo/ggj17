@@ -16,19 +16,30 @@ public enum PlayerState
 public class PlayerController : MonoBehaviour
 {
     public PlayerId playerId;
+    PlayerState state = PlayerState.IDLE;
 
+    // COW DROPPER
     public Transform cowHoldingPlace;
 
     public float dropCooldownTime = 5f;
-    private float dropTime;
+    private float dropCooldown;
 
     public bool isInPickUpArea;
     private bool isHoldingCow;
     private CowPickUp cow;
 
+    // STOMPER
+    bool hitMax;
+    bool hitMin;
+
+    private DummyWaveGenerator waveGenerator;
+    public float stompCooldownTime = 2f;
+    private float stompCooldown;
+
     private void Start()
     {
         playerId = GetComponent<PlayerId>();
+        waveGenerator = FindObjectOfType<DummyWaveGenerator>();
     }
 
     private void Update()
@@ -45,21 +56,55 @@ public class PlayerController : MonoBehaviour
 
     void UpdateStomper()
     {
+        CheckStomp();
+        UpdateStompCoolDown();
+    }
 
+    void CheckStomp()
+    {
+        if(!IsPressingStomp())
+        {
+            if (hitMax)
+            {
+                Stomp();
+            }
+            hitMin = true;
+            hitMax = false;
+        }
+        else
+        {
+            hitMax = true;
+            hitMin = false;
+        }
+    }
+
+    void Stomp()
+    {
+        if (stompCooldown > 0) return;
+        stompCooldown = stompCooldownTime;
+        waveGenerator.GenerateWave(transform.position);
+    }
+
+    void UpdateStompCoolDown()
+    {
+        if (stompCooldown > 0f)
+        {
+            stompCooldown -= Time.deltaTime;
+        }
     }
 
     void UpdateCowDropper()
     {
         CheckPickCow();
         CheckReleaseCow();
-        UpdateCoolDown();
+        UpdateDropCoolDown();
     }
 
-    void UpdateCoolDown()
+    void UpdateDropCoolDown()
     {
-        if (!isHoldingCow && dropTime > 0f)
+        if (!isHoldingCow && dropCooldown > 0f)
         {
-            dropTime -= Time.deltaTime;
+            dropCooldown -= Time.deltaTime;
         }
     }
 
@@ -67,7 +112,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isHoldingCow || isHoldingCow && IsPressingPickUp()) return;
 
-        dropTime = dropCooldownTime;
+        dropCooldown = dropCooldownTime;
         cow.DropAt(cowHoldingPlace.position);
 
         cow = null;
@@ -85,10 +130,16 @@ public class PlayerController : MonoBehaviour
     {
         if (isHoldingCow || !isInPickUpArea) return;
         if (!IsPressingPickUp()) return;
-        if (dropTime > 0f) return;
+        if (dropCooldown > 0f) return;
 
+        if (cow == null) return;
         isHoldingCow = true;
         cow.GrabAt(cowHoldingPlace.position, transform);
+    }
+
+    bool IsPressingStomp()
+    {
+        return XCI.GetAxis(XboxAxis.RightTrigger, playerId.controller) > 0.5f;
     }
 
     bool IsPressingPickUp()

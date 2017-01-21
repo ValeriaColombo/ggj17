@@ -6,9 +6,10 @@ public class DummyWaveGenerator : MonoBehaviour
 {
 	public GameObject wavePrefab;
 
-	private void GenerateWave(Vector3 wavePos)
+	public void GenerateWave(Vector3 wavePos)
 	{
-		GameObject wave = Instantiate (wavePrefab);
+        wavePos.y = 0f;
+        GameObject wave = Instantiate (wavePrefab);
 		wave.transform.SetParent (transform.parent);
 		wave.transform.position = wavePos;
 	}

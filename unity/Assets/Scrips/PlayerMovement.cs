@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalAxis;
     private float verticalAxis;
 
+    public SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
         tr = GetComponent<Transform>();
@@ -37,6 +39,13 @@ public class PlayerMovement : MonoBehaviour
             CheckInput();
         }
         tr.Translate(verticalAxis, 0, horizontalAxis);
+        UpdateSpriteFacing();
+    }
+
+    void UpdateSpriteFacing()
+    {
+        if (horizontalAxis > -0.01f && horizontalAxis < 0.01f) return;
+        spriteRenderer.flipX = (horizontalAxis < 0) ? true : false;
     }
 
     void CheckInput()

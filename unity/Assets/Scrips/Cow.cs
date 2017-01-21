@@ -24,10 +24,12 @@ public class Cow : MonoBehaviour
 
     public void Reset()
     {
+		pickUp.isBeingHold = false;
         StopAllCoroutines();
         blast.SetActive(false);
         state = CowState.INACTIVE;
         isTouchingTheFloor = false;
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     void OnCollisionEnter(Collision col)
@@ -72,7 +74,7 @@ public class Cow : MonoBehaviour
 
 	void Update () 
 	{
-        var rb = GetComponent<Rigidbody>();
+		var rb = GetComponent<Rigidbody>();
         if (pickUp.isBeingHold)
         {
             rb.velocity = Vector3.zero;

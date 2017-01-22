@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 			return;
 		
 		GameOverAlready = true;
-		SoundManager.Instance.PlayEffect (SoundManager.Instance.effectPlayerDeath);
+//		SoundManager.Instance.PlayEffect (SoundManager.Instance.effectPlayerDeath);
 		min0.transform.parent.gameObject.SetActive (false);
 
 		StartCoroutine (ShowGameOverScreenInAWhile (team));

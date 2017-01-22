@@ -24,6 +24,9 @@ public class SoundManager : MonoBehaviour
 	public AudioClip effectCharFemaleDeath;
 	public AudioClip effectSplashName;
 
+	public AudioClip effectDrop;
+	public AudioClip effectMilkLazer;
+
 	public static SoundManager Instance { get { return instance; } }
     private static SoundManager instance;
 

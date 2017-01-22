@@ -9,6 +9,7 @@ public class DropWave : MonoBehaviour {
 	public void StartAnim ()
 	{
 		timer = 0;
+		SoundManager.Instance.PlayEffect(SoundManager.Instance.effectDrop);
 	}
 	
 	void Update ()

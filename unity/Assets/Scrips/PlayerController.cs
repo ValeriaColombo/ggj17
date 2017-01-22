@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     PlayerState state = PlayerState.IDLE;
 
     PlayerMovement playerMovement;
+    Animator playerAnimator;
 
     // COW DROPPER
     public Transform cowHoldingPlace;
@@ -31,8 +32,6 @@ public class PlayerController : MonoBehaviour
     private CowPickUp cow;
 
     // STOMPER
-    public Animator waveAnimator;
-
     bool hitMax;
     bool hitMin;
 
@@ -48,6 +47,8 @@ public class PlayerController : MonoBehaviour
         playerId = GetComponent<PlayerId>();
         waveGenerator = FindObjectOfType<DummyWaveGenerator>();
         playerMovement = GetComponent<PlayerMovement>();
+
+        playerAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -78,7 +79,12 @@ public class PlayerController : MonoBehaviour
         playerLives--;
         if(playerLives == 0)
         {
-			PlayerIsDead ();
+            playerAnimator.SetTrigger("death");
+            Invoke("PlayerIsDead", 1f);
+        }
+        else
+        {
+            playerAnimator.SetTrigger("hit");
         }
     }
 
@@ -117,7 +123,9 @@ public class PlayerController : MonoBehaviour
         if (stompCooldown > 0) return;
 		stompCooldown = Configs.Instance().StompCooldown;
         waveGenerator.GenerateWave(transform.position);
-        waveAnimator.SetTrigger("stomp");
+
+        playerMovement.enabled = false;
+        playerAnimator.SetTrigger("stomp");
     }
 
     void UpdateStompCoolDown()
@@ -125,6 +133,10 @@ public class PlayerController : MonoBehaviour
         if (stompCooldown > 0f)
         {
             stompCooldown -= Time.deltaTime;
+        }
+        else
+        {
+            if (!playerMovement.enabled) playerMovement.enabled = true;
         }
     }
 

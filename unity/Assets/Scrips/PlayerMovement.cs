@@ -17,10 +17,14 @@ public class PlayerMovement : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
 
+    private Animator playerAnimator;
+
     private void Awake()
     {
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
+
+        playerAnimator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -40,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
             CheckInput();
         }
         tr.Translate(verticalAxis, 0, horizontalAxis);
+        playerAnimator.SetFloat("speed", Mathf.Abs(verticalAxis) + Mathf.Abs(horizontalAxis));
         UpdateSpriteFacing();
     }
 

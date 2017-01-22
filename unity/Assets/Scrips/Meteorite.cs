@@ -44,6 +44,7 @@ public class Meteorite : MonoBehaviour {
 			GameObject wave = GameObjectsPool.Instance ().GiveMeADropWave ();
 			wave.transform.SetParent (transform.parent);
 			wave.transform.localPosition = new Vector3 (transform.localPosition.x, 0, transform.localPosition.z);
+			wave.transform.localScale = new Vector3 (2,2,2);
 			wave.GetComponent<DropWave> ().StartAnim ();
 		}
 	}

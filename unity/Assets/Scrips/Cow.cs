@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using XboxCtrlrInput;
 
 public class Cow : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class Cow : MonoBehaviour
 
     public void Reset()
     {
+		pushPushCount = 0;
         blast.SetActive(false);
         pickUp.isBeingHold = false;
         StopAllCoroutines();
@@ -40,6 +42,7 @@ public class Cow : MonoBehaviour
         state = CowState.INACTIVE;
         isTouchingTheFloor = false;
 		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		sliderBar.SetActive(false);
     }
 
     void OnCollisionEnter(Collision col)
@@ -61,13 +64,26 @@ public class Cow : MonoBehaviour
         countdown = bombTime;
     }
 
+	private int pushPushCount = 0;
     void CheckCountdown()
     {
         if (state != CowState.ACTIVE) return;
 
         if (countdown > 0)
         {
+			if (pickUp.playerController != null && XCI.GetButtonUp (XboxButton.A, pickUp.playerController.playerId.controller)) 
+			{
+				pushPushCount++;
+			}
+
             countdown -= Time.deltaTime;
+
+			if(pushPushCount > 6)
+			{
+				pushPushCount = 0;
+				countdown = Mathf.Min(countdown + 1, bombTime);
+			}
+
             UpdateBar((countdown / bombTime));
         }
         else
@@ -90,6 +106,12 @@ public class Cow : MonoBehaviour
 
     IEnumerator Detonate()
     {
+		GameObject wave = GameObjectsPool.Instance ().GiveMeADropWave ();
+		wave.transform.SetParent (transform.parent);
+		wave.transform.localPosition = new Vector3 (transform.localPosition.x, 0, transform.localPosition.z);
+		wave.transform.localScale = new Vector3 (4,4,4);
+		wave.GetComponent<DropWave> ().StartAnim ();
+
         state = CowState.EXPLODING;
         sliderBar.SetActive(false);
         blast.SetActive(true);

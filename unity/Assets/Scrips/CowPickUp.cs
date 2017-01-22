@@ -5,7 +5,7 @@ public class CowPickUp : MonoBehaviour
     // TODO actually place on the floor.
     float initialYPos;
     public bool isBeingHold;
-    PlayerController playerController;
+    public PlayerController playerController;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,7 +26,6 @@ public class CowPickUp : MonoBehaviour
             var playerController = other.GetComponent<PlayerController>();
             if (playerController != null) playerController.CanPickCow(this, false);
         }
-        playerController = null;
     }
 
     public void DropAt(Vector3 pos)
@@ -35,6 +34,7 @@ public class CowPickUp : MonoBehaviour
         transform.parent.position = pos;
         transform.parent.SetParent(null);
         isBeingHold = false;
+		playerController = null;
     }
 
     public void GrabAt(Vector3 pos, Transform newParent)

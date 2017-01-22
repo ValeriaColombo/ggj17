@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour 
 {
+	public bool GameOverAlready = false;
+
 	private static GameManager _instance;
 	public static GameManager Instance()
 	{
@@ -79,6 +81,11 @@ public class GameManager : MonoBehaviour
 
 	public void GameOver(PlayerTeam team)
 	{
+		if (GameOverAlready)
+			return;
+		
+		GameOverAlready = true;
+
 		min0.transform.parent.gameObject.SetActive (false);
 		gameOver.ShowGameOver (team == PlayerTeam.BLUE_TEAM);
 	}

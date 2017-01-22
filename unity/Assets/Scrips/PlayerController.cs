@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+		transform.localPosition = new Vector3 (Random.Range (-6f, 6f), 1, Random.Range (-10f, 10f));
+
 		playerLives = Configs.Instance ().PlayerLives;
 
         playerId = GetComponent<PlayerId>();
@@ -67,6 +69,9 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
+		if (GameManager.Instance ().GameOverAlready)
+			return;
+		
         ToggleHolding(false);
         cow = null;
 
@@ -190,6 +195,6 @@ public class PlayerController : MonoBehaviour
         if (playerId.useKeyboard)
             return Input.GetKey(KeyCode.P);
         else
-            return XCI.GetAxis(XboxAxis.RightTrigger, playerId.controller) > 0.5f;
+			return XCI.GetAxis(XboxAxis.RightTrigger, playerId.controller) > 0.5f && XCI.GetAxis(XboxAxis.LeftTrigger, playerId.controller) > 0.5f;
     }
 }

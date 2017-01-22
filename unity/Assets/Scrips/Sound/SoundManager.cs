@@ -4,10 +4,29 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance { get; private set; }
+	public AudioClip musicGamePlay;
+	public AudioClip musicMenu;
+	public AudioClip musicGameOver;
+
+	public AudioClip effectButtonMenu;
+	public AudioClip effectPlayerDeath;
+
+	public AudioClip effectCharStep;
+	public AudioClip effectCharStomp;
+	public AudioClip effectCharMaleHurt;
+	public AudioClip effectCharMaleCowUp;
+	public AudioClip effectCharMaleCowDown;
+	public AudioClip effectCharMaleDeath;
+	public AudioClip effectCharFemaleHurt;
+	public AudioClip effectCharFemaleCowUp;
+	public AudioClip effectCharFemaleCowDown;
+	public AudioClip effectCharFemaleDeath;
+
+	public static SoundManager Instance { get { return instance; } }
     private static SoundManager instance;
 
     public AudioSource effectsSource;
+	public AudioSource musicsSource;
 
     private void Awake()
     {
@@ -21,6 +40,13 @@ public class SoundManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+
+	public void PlayMusic(AudioClip clip, bool loop)
+	{
+		musicsSource.clip = clip;
+		musicsSource.loop = loop;
+		musicsSource.Play();
+	}
 
     public void PlayEffect(AudioClip clip)
     {

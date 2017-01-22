@@ -41,7 +41,7 @@ public class Wave : MonoBehaviour
 		timeToLive += Time.fixedDeltaTime;
 		if (timeToLive > 2)
 		{
-			Destroy (gameObject);
+			GameObjectsPool.Instance ().FreeThisStompWave (gameObject);
 		}
 	}
 }

@@ -8,6 +8,7 @@ public class Splash : MonoBehaviour {
 
 	void Start () 
 	{
+		SoundManager.Instance.PlayMusic (SoundManager.Instance.musicMenu, true);
 		gameObject.SetActive (true);
 	}
 	
@@ -15,6 +16,7 @@ public class Splash : MonoBehaviour {
 	{
 		if (Input.anyKeyDown) 
 		{
+			SoundManager.Instance.PlayEffect (SoundManager.Instance.effectButtonMenu);
 			gameObject.SetActive (false);
 			menu.gameObject.SetActive (true);
 			menu.OpenScreen ();

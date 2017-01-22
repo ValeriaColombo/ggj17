@@ -20,7 +20,7 @@ public class Splash : MonoBehaviour {
 
 	public void Activate()
 	{
-//		SoundManager.Instance.PlayEffect (SoundManager.Instance.effectSplashName);
+		SoundManager.Instance.PlayEffect (SoundManager.Instance.effectSplashName);
 	}
 
 	void Update () 

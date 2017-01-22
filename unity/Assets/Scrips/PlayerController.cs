@@ -176,8 +176,8 @@ public class PlayerController : MonoBehaviour
         cow.GrabAt(cowHoldingPlace.position, transform);
         cow.GetComponentInParent<Colorize>()
             .ApplyColor(playerId.team == PlayerTeam.RED_TEAM
-            ? Configs.Instance().redColor
-            : Configs.Instance().blueColor);
+            ? Configs.Instance().ReadTeamColor
+            : Configs.Instance().BlueTeamColor);
     }
 
     bool IsPressingStomp()

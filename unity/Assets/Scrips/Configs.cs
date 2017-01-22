@@ -31,6 +31,6 @@ public class Configs : MonoBehaviour {
     public float PlayerNormalSpeed = 5f;
     public float HoldingCowPlayerSpeed = 2.5f;
 
-    public Color redColor = Color.red;
-    public Color blueColor = Color.blue;
+    [HideInInspector] public Color ReadTeamColor = new Color(1, 114f / 255f, 114f / 255f, 1f);
+    [HideInInspector] public Color BlueTeamColor = new Color(114f / 255f, 208f / 255f, 1f, 1f);
 }

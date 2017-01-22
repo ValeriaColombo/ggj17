@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class DummyWaveGenerator : MonoBehaviour 
 {
-	public GameObject wavePrefab;
-
 	public void GenerateWave(Vector3 wavePos)
 	{
         wavePos.y = 0f;
-        GameObject wave = Instantiate (wavePrefab);
+		GameObject wave = GameObjectsPool.Instance().GiveMeAStompWave();
 		wave.transform.SetParent (transform.parent);
 		wave.transform.position = wavePos;
 	}
-
-	private float cooldown = 0;
 	/*
+	private float cooldown = 0;
+
 	void Update()
 	{
 		cooldown -= Time.fixedDeltaTime;

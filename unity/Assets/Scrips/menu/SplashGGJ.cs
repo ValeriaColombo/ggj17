@@ -10,7 +10,7 @@ public class SplashGGJ : MonoBehaviour {
 	void Update () 
 	{
 		timer += Time.fixedDeltaTime;
-		if (timer > 2) 
+		if (timer > 3) 
 		{
 			SceneManager.LoadScene ("menu");
 		}

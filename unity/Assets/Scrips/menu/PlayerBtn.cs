@@ -33,6 +33,7 @@ public class PlayerBtn : MonoBehaviour
 		{
 			ResetTimerCallback ();
 
+			SoundManager.Instance.PlayEffect (SoundManager.Instance.effectButtonMenu);
 			isReady = true;
 			waitingGO.SetActive (false);
 			readyGO.SetActive (true);

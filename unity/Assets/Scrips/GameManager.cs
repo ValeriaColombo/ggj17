@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
 	private void Start ()
 	{
+		SoundManager.Instance.PlayMusic (SoundManager.Instance.musicGamePlay, false);
 		timeLeft = Configs.Instance().GameTime;
 		StartCoroutine (UpdateTimer());
 	}
@@ -85,8 +86,16 @@ public class GameManager : MonoBehaviour
 			return;
 		
 		GameOverAlready = true;
-
+		SoundManager.Instance.PlayEffect (SoundManager.Instance.effectPlayerDeath);
 		min0.transform.parent.gameObject.SetActive (false);
+
+		StartCoroutine (ShowGameOverScreenInAWhile (team));
+	}
+
+	private IEnumerator ShowGameOverScreenInAWhile(PlayerTeam team)
+	{
+		yield return new WaitForSeconds (2);
+		SoundManager.Instance.PlayMusic (SoundManager.Instance.musicGameOver, false);
 		gameOver.ShowGameOver (team == PlayerTeam.BLUE_TEAM);
 	}
 }

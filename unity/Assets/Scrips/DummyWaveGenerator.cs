@@ -15,7 +15,7 @@ public class DummyWaveGenerator : MonoBehaviour
 	}
 
 	private float cooldown = 0;
-
+	/*
 	void Update()
 	{
 		cooldown -= Time.fixedDeltaTime;
@@ -32,5 +32,5 @@ public class DummyWaveGenerator : MonoBehaviour
 				GenerateWave(new Vector3(hit.point.x, 0, hit.point.z));
 			}
 		}
-	}
+	}*/
 }

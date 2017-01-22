@@ -61,6 +61,11 @@ public class GameManager : MonoBehaviour
 		{
 			//Se termino;
 		}
+		else if(timeLeft <= Configs.Instance().TimeToPachaDoom*2 && timeLeft > Configs.Instance().TimeToPachaDoom)
+		{
+			ArmagedonTrigger.StartThePachamaming (Configs.Instance().TimeToPachaDoom);
+			StartCoroutine (UpdateTimer());
+		}
 		else if(timeLeft <= Configs.Instance().TimeToPachaDoom)
 		{
 			ArmagedonTrigger.StartLechegedon ();

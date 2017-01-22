@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
             walkAudioSource.clip = clip;
             walkAudioSource.loop = true;
             walkAudioSource.Play();
+            walkAudioSource.volume = holding ? 0.25f : 0.5f;
             print("called play");
         }
         else

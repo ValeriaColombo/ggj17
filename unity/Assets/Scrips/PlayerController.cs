@@ -184,6 +184,8 @@ public class PlayerController : MonoBehaviour
         if (cow != null) cow.DropAt(cowHoldingPlace.position);
         cow = null;
         isHoldingCow = false;
+
+        SoundManager.Instance.PlayEffect(SoundManager.Instance.effectCharMaleCowDown);
     }
 
     public void GrabAndHoldCow()
@@ -195,6 +197,8 @@ public class PlayerController : MonoBehaviour
             .ApplyColor(playerId.team == PlayerTeam.RED_TEAM
             ? Configs.Instance().ReadTeamColor
             : Configs.Instance().BlueTeamColor);
+
+        SoundManager.Instance.PlayEffect(SoundManager.Instance.effectCharMaleCowUp);
     }
 
     public void CanPickCow(CowPickUp cow, bool inPickUpArea)

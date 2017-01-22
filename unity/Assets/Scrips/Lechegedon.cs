@@ -26,7 +26,7 @@ public class Lechegedon : MonoBehaviour
 				GameObject meteor = GameObjectsPool.Instance ().GiveMeAMeteorite ();
 				meteor.transform.SetParent (transform.parent);
 				meteor.transform.localPosition = new Vector3 (Random.Range (-8f, 8f), 10, Random.Range (-14f, 14f));
-				meteor.transform.localRotation = Quaternion.Euler(new Vector3 (0,0,-90));
+				meteor.transform.localRotation = Quaternion.Euler(new Vector3 (57,90,0));
 				meteor.GetComponent<Meteorite> ().Reset ();
 			}
 		}

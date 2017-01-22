@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scrips\CowBlast.cs" />
      <Compile Include="Assets\Scrips\CowPickUp.cs" />
      <Compile Include="Assets\Scrips\CowSpawner.cs" />
+     <Compile Include="Assets\Scrips\DropWave.cs" />
      <Compile Include="Assets\Scrips\DummyWaveGenerator.cs" />
      <Compile Include="Assets\Scrips\GameManager.cs" />
      <Compile Include="Assets\Scrips\GameObjectsPool.cs" />

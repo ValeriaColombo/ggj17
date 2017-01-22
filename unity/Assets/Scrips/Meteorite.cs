@@ -18,16 +18,33 @@ public class Meteorite : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col)
 	{
+		bool anim_explotion = false;
 		if (col.gameObject.name.IndexOf ("floor") > -1)
+		{
+			anim_explotion = true;
+		}
+		else if (col.collider.CompareTag("Player"))
+		{
+			anim_explotion = true;
+			col.gameObject.GetComponent<PlayerController> ().TakeDamage ();
+		}
+		else if(col.collider.CompareTag("Cow"))
+		{
+			anim_explotion = true;
+			col.gameObject.GetComponent<Cow> ().BlowUp ();
+		}
+
+		if (anim_explotion)
 		{
 			drop.enabled = false;
 			explosion.gameObject.SetActive (true);
 			exploding = true;
 			time_explosion = 1;
-		}
-		else if (col.gameObject.name.IndexOf ("player") > -1)
-		{
-			
+
+			GameObject wave = GameObjectsPool.Instance ().GiveMeADropWave ();
+			wave.transform.SetParent (transform.parent);
+			wave.transform.localPosition = new Vector3 (transform.localPosition.x, 0, transform.localPosition.z);
+			wave.GetComponent<DropWave> ().StartAnim ();
 		}
 	}
 

@@ -118,11 +118,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void PushBombs()
+    {
+        // llamado desde la animación
+        waveGenerator.GenerateWave(transform.position);
+    }
+
     void Stomp()
     {
         if (stompCooldown > 0) return;
 		stompCooldown = Configs.Instance().StompCooldown;
-        waveGenerator.GenerateWave(transform.position);
 
         playerMovement.enabled = false;
         playerAnimator.SetTrigger("stomp");

@@ -29,6 +29,9 @@ public class PlayerBtn : MonoBehaviour
 
 	private void Update()
 	{
+		if (isReady)
+			return;
+		
 		if(Input.GetKeyDown(keyboardKeyToStart) || XCI.GetButton(XboxButton.A, controller))
 		{
 			ResetTimerCallback ();

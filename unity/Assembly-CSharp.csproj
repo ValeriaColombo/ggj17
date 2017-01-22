@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scrips\menu\CharSelectionMenu.cs" />
      <Compile Include="Assets\Scrips\menu\PlayerBtn.cs" />
      <Compile Include="Assets\Scrips\menu\Splash.cs" />
+     <Compile Include="Assets\Scrips\menu\SplashGGJ.cs" />
      <Compile Include="Assets\Scrips\resultsScreen\FabrisTauntrum.cs" />
      <Compile Include="Assets\Scrips\resultsScreen\FabrisTauntrum2.cs" />
      <Compile Include="Assets\Scrips\resultsScreen\GameOver.cs" />

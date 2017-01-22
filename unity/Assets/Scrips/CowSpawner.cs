@@ -53,5 +53,7 @@ public class CowSpawner : MonoBehaviour
 
 		cow.GetComponent<Rigidbody> ().velocity = Vector3.zero;
 		cow.GetComponent<Rigidbody> ().AddForce (force, ForceMode.Impulse);
-	}
+
+        SoundManager.Instance.PlayEffect(SoundManager.Instance.effectCowSpawn);
+    }
 }

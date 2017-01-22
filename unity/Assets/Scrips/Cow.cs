@@ -15,6 +15,7 @@ public class Cow : MonoBehaviour
     private CowState state;
     private bool isTouchingTheFloor;
 
+	public SpriteRenderer cowImg;
     public GameObject sliderBar;
     public Slider slider;
     public GameObject blast;
@@ -40,6 +41,7 @@ public class Cow : MonoBehaviour
         StopAllCoroutines();
         blast.SetActive(false);
         state = CowState.INACTIVE;
+		cowImg.sprite = Resources.Load<Sprite> ("cow/inactive") as Sprite;
         isTouchingTheFloor = false;
 		GetComponent<Rigidbody>().velocity = Vector3.zero;
 		sliderBar.SetActive(false);
@@ -58,6 +60,7 @@ public class Cow : MonoBehaviour
 
     void StartBombCountdown()
     {
+		cowImg.sprite = Resources.Load<Sprite> ("cow/active") as Sprite;
         state = CowState.ACTIVE;
         sliderBar.SetActive(true);
         slider.value = 1f;
@@ -115,6 +118,7 @@ public class Cow : MonoBehaviour
         state = CowState.EXPLODING;
         sliderBar.SetActive(false);
         blast.SetActive(true);
+		cowImg.sprite = Resources.Load<Sprite> ("cow/invisible") as Sprite;
         yield return new WaitForSeconds(0.5f);
         ReturnToPool();
     }

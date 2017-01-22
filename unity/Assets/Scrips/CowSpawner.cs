@@ -39,6 +39,7 @@ public class CowSpawner : MonoBehaviour
 		cow.transform.SetParent (transform.parent);
 		cow.transform.localPosition = transform.localPosition;
 		cow.GetComponent<Cow> ().Reset ();
+		cow.GetComponent<Cow> ().cowImg.flipX = farToZ < 0;
 
 		Vector3 force;
 		if (Random.Range (0, 10) < 1)

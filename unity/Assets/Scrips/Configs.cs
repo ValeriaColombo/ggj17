@@ -30,4 +30,7 @@ public class Configs : MonoBehaviour {
 
     public float PlayerNormalSpeed = 5f;
     public float HoldingCowPlayerSpeed = 2.5f;
+
+    public Color redColor = Color.red;
+    public Color blueColor = Color.blue;
 }

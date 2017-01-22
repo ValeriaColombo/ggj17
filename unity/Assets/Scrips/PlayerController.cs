@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-		transform.localPosition = new Vector3 (Random.Range (-6f, 6f), 1, Random.Range (-10f, 10f));
+		//transform.localPosition = new Vector3 (Random.Range (-6f, 6f), 1, Random.Range (-10f, 10f));
 
 		playerLives = Configs.Instance ().PlayerLives;
 

@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float verticalAxis;
 
     public SpriteRenderer spriteRenderer;
+    public AudioSource walkAudioSource;
 
     private Animator playerAnimator;
 
@@ -44,8 +45,35 @@ public class PlayerMovement : MonoBehaviour
             CheckInput();
         }
         tr.Translate(verticalAxis, 0, horizontalAxis);
-        playerAnimator.SetFloat("speed", Mathf.Abs(verticalAxis) + Mathf.Abs(horizontalAxis));
+        UpdateEffects();
         UpdateSpriteFacing();
+    }
+
+    void UpdateEffects()
+    {
+        var addedSpeed = Mathf.Abs(verticalAxis) + Mathf.Abs(horizontalAxis);
+        playerAnimator.SetFloat("speed", addedSpeed);
+
+        var holding = speed < Configs.Instance().PlayerNormalSpeed;
+
+        if (addedSpeed > 0.07f || holding) 
+        {
+            var clip = holding
+                ? SoundManager.Instance.effectCharStepHolding
+                : SoundManager.Instance.effectCharStep;
+
+            if (walkAudioSource.clip == clip) return;
+
+            walkAudioSource.clip = clip;
+            walkAudioSource.loop = true;
+            walkAudioSource.Play();
+            print("called play");
+        }
+        else
+        {
+            walkAudioSource.clip = null;
+            walkAudioSource.Stop();
+        }
     }
 
     void UpdateSpriteFacing()

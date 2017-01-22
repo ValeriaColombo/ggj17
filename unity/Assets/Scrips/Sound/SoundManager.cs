@@ -12,7 +12,8 @@ public class SoundManager : MonoBehaviour
 	public AudioClip effectPlayerDeath;
 
 	public AudioClip effectCharStep;
-	public AudioClip effectCharStomp;
+    public AudioClip effectCharStepHolding;
+    public AudioClip effectCharStomp;
 	public AudioClip effectCharMaleHurt;
 	public AudioClip effectCharMaleCowUp;
 	public AudioClip effectCharMaleCowDown;

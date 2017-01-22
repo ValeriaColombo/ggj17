@@ -153,9 +153,6 @@ public class Cow : MonoBehaviour
 		}
 
         CheckCountdown();
-
-        var random = Random.Range(0f, 100f);
-        if (random > 96) SoundManager.Instance.PlayRandomCow();
     }
 
     void ReturnToPool()

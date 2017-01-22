@@ -22,6 +22,7 @@ public class SoundManager : MonoBehaviour
 	public AudioClip effectCharFemaleCowUp;
 	public AudioClip effectCharFemaleCowDown;
 	public AudioClip effectCharFemaleDeath;
+	public AudioClip effectSplashName;
 
 	public static SoundManager Instance { get { return instance; } }
     private static SoundManager instance;

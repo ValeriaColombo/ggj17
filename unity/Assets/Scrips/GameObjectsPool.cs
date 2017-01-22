@@ -7,6 +7,7 @@ public class GameObjectsPool : MonoBehaviour
 	public GameObject cowPrefab;
 	public GameObject meteoritePrefab;
 	public GameObject dropWavePrefab;
+	public GameObject dropSplashPrefab;
 	public GameObject stompWavePrefab;
 
 	private static GameObjectsPool _instance;
@@ -18,6 +19,7 @@ public class GameObjectsPool : MonoBehaviour
 	private List<GameObject> meteorites;
 	private List<GameObject> cows;
 	private List<GameObject> dropWaves;
+	private List<GameObject> dropSplashes;
 	private List<GameObject> stompWaves;
 
 	private void Awake ()
@@ -27,6 +29,7 @@ public class GameObjectsPool : MonoBehaviour
 		meteorites = new List<GameObject> ();
 		cows = new List<GameObject> ();
 		dropWaves = new List<GameObject> ();
+		dropSplashes = new List<GameObject> ();
 		stompWaves = new List<GameObject> ();
 	}
 
@@ -107,6 +110,26 @@ public class GameObjectsPool : MonoBehaviour
 	{
 		go.SetActive(false);
 		dropWaves.Add (go);
+		go.transform.SetParent (transform);
+	}
+
+	public GameObject GiveMeADropSplash()
+	{
+		if (dropWaves.Count > 0) 
+		{
+			GameObject aDS = dropSplashes [0];
+			dropSplashes.RemoveAt (0);
+			aDS.SetActive (true);
+			return aDS;
+		}
+
+		return Instantiate (dropSplashPrefab);
+	}
+
+	public void FreeThisDropSplash(GameObject go)
+	{
+		go.SetActive(false);
+		dropSplashes.Add (go);
 		go.transform.SetParent (transform);
 	}
 }

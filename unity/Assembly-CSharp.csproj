@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scrips\CowBlast.cs" />
      <Compile Include="Assets\Scrips\CowPickUp.cs" />
      <Compile Include="Assets\Scrips\CowSpawner.cs" />
+     <Compile Include="Assets\Scrips\DropSplash.cs" />
      <Compile Include="Assets\Scrips\DropWave.cs" />
      <Compile Include="Assets\Scrips\DummyWaveGenerator.cs" />
      <Compile Include="Assets\Scrips\GameManager.cs" />
@@ -67,6 +68,7 @@
      <Compile Include="Assets\Scrips\Sound\SoundManager.cs" />
      <Compile Include="Assets\Scrips\UpdateCounterNumber.cs" />
      <Compile Include="Assets\Scrips\Wave.cs" />
+     <Compile Include="Assets\Scrips\menu\ABtnAnim.cs" />
      <Compile Include="Assets\Scrips\menu\CharSelectionMenu.cs" />
      <Compile Include="Assets\Scrips\menu\PlayerBtn.cs" />
      <Compile Include="Assets\Scrips\menu\Splash.cs" />

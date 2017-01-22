@@ -46,6 +46,11 @@ public class Meteorite : MonoBehaviour {
 			wave.transform.localPosition = new Vector3 (transform.localPosition.x, 0, transform.localPosition.z);
 			wave.transform.localScale = new Vector3 (2,2,2);
 			wave.GetComponent<DropWave> ().StartAnim ();
+
+			GameObject splash = GameObjectsPool.Instance ().GiveMeADropSplash ();
+			splash.transform.SetParent (transform.parent);
+			splash.transform.localPosition = new Vector3 (transform.localPosition.x, 1, transform.localPosition.z);
+			splash.GetComponent<DropSplash> ().StartAnim ();
 		}
 	}
 

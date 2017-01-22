@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scrips\PlayerId.cs" />
      <Compile Include="Assets\Scrips\PlayerMovement.cs" />
      <Compile Include="Assets\Scrips\RandomAlpha.cs" />
+     <Compile Include="Assets\Scrips\Sound\SoundManager.cs" />
      <Compile Include="Assets\Scrips\UpdateCounterNumber.cs" />
      <Compile Include="Assets\Scrips\Wave.cs" />
      <Compile Include="Assets\Scrips\menu\CharSelectionMenu.cs" />

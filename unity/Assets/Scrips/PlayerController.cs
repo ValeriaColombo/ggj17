@@ -15,7 +15,7 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
-    public int playerLives = 5;
+    public int playerLives = 1;
     public PlayerId playerId;
     PlayerState state = PlayerState.IDLE;
 
@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     // COW DROPPER
     public Transform cowHoldingPlace;
 
-    public float pickUpCooldownTime = 5f;
     private float pickUpCooldown;
 
     public bool isInPickUpArea;
@@ -38,13 +37,11 @@ public class PlayerController : MonoBehaviour
     bool hitMin;
 
     private DummyWaveGenerator waveGenerator;
-    public float stompCooldownTime = 2f;
     private float stompCooldown;
 
     private void Start()
     {
-        pickUpCooldownTime = Configs.Instance().PickUpCooldown;
-        stompCooldownTime = Configs.Instance().StompCooldown;
+		playerLives = Configs.Instance ().PlayerLives;
 
         playerId = GetComponent<PlayerId>();
         waveGenerator = FindObjectOfType<DummyWaveGenerator>();
@@ -113,7 +110,7 @@ public class PlayerController : MonoBehaviour
     void Stomp()
     {
         if (stompCooldown > 0) return;
-        stompCooldown = stompCooldownTime;
+		stompCooldown = Configs.Instance().StompCooldown;
         waveGenerator.GenerateWave(transform.position);
         waveAnimator.SetTrigger("stomp");
     }
@@ -145,7 +142,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isHoldingCow || isHoldingCow && IsPressingPickUp()) return;
 
-        pickUpCooldown = pickUpCooldownTime;
+		pickUpCooldown = Configs.Instance().PickUpCooldown;
         if(cow != null) cow.DropAt(cowHoldingPlace.position);
         ToggleHolding(false);
         cow = null;

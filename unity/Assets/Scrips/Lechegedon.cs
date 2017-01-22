@@ -15,6 +15,8 @@ public class Lechegedon : MonoBehaviour
 
 	private void Start()
 	{
+		teta1.SetActive (false);
+		teta2.SetActive (false);
 		CamStartPos = cameraTr.localPosition;
 		laPachaMa.localPosition = new Vector3 (-32, -37, 0.7f);
 	}

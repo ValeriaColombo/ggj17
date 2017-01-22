@@ -10,7 +10,8 @@ public class UpdateCounterNumber : MonoBehaviour
 
     public void UpdateNumbers(float value)
     {
-        int index = Mathf.FloorToInt(value * sprites.Length);
+        int index = Mathf.FloorToInt(value * sprites.Length - 1);
+        if (index < 0) return;
         image.sprite = sprites[index];
     }
 }

@@ -68,6 +68,11 @@ public class PlayerController : MonoBehaviour
 		}
     }
 
+    public void PlayStompSound()
+    {
+        SoundManager.Instance.PlayEffect(SoundManager.Instance.effectCharStomp);
+    }
+
     public void TakeDamage()
     {
 		if (GameManager.Instance ().GameOverAlready)
@@ -80,7 +85,7 @@ public class PlayerController : MonoBehaviour
         if(playerLives == 0)
         {
             playerAnimator.SetTrigger("death");
-            Invoke("PlayerIsDead", 1f);
+            Invoke("PlayerIsDead", 1.2f);
         }
         else
         {
@@ -165,15 +170,31 @@ public class PlayerController : MonoBehaviour
         if (!isHoldingCow || isHoldingCow && IsPressingPickUp()) return;
 
 		pickUpCooldown = Configs.Instance().PickUpCooldown;
-        if(cow != null) cow.DropAt(cowHoldingPlace.position);
         ToggleHolding(false);
-        cow = null;
     }
 
     void ToggleHolding(bool holding)
     {
-        isHoldingCow = holding;
+        playerAnimator.SetBool("holding", holding);
         playerMovement.speed = holding ? Configs.Instance().HoldingCowPlayerSpeed : Configs.Instance().PlayerNormalSpeed;
+    }
+
+    public void DropCow()
+    {
+        if (cow != null) cow.DropAt(cowHoldingPlace.position);
+        cow = null;
+        isHoldingCow = false;
+    }
+
+    public void GrabAndHoldCow()
+    {
+        if (cow == null) return;
+        isHoldingCow = true;
+        cow.GrabAt(cowHoldingPlace.position, transform);
+        cow.GetComponentInParent<Colorize>()
+            .ApplyColor(playerId.team == PlayerTeam.RED_TEAM
+            ? Configs.Instance().ReadTeamColor
+            : Configs.Instance().BlueTeamColor);
     }
 
     public void CanPickCow(CowPickUp cow, bool inPickUpArea)
@@ -191,12 +212,6 @@ public class PlayerController : MonoBehaviour
 
         if (cow == null) return;
         ToggleHolding(true);
-
-        cow.GrabAt(cowHoldingPlace.position, transform);
-        cow.GetComponentInParent<Colorize>()
-            .ApplyColor(playerId.team == PlayerTeam.RED_TEAM
-            ? Configs.Instance().ReadTeamColor
-            : Configs.Instance().BlueTeamColor);
     }
 
     bool IsPressingStomp()

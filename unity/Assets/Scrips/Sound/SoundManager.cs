@@ -27,7 +27,18 @@ public class SoundManager : MonoBehaviour
 	public AudioClip effectDrop;
 	public AudioClip effectMilkLazer;
 
-	public static SoundManager Instance { get { return instance; } }
+    [Header("Cow")]
+    public AudioClip[] cowEffects;
+    public AudioClip effectCowSpawn;
+    public AudioClip effectCowBlowUp;
+
+    public void PlayRandomCow()
+    {
+        var random = (int)Random.Range(0, cowEffects.Length);
+        PlayEffect(cowEffects[random]);
+    }
+
+    public static SoundManager Instance { get { return instance; } }
     private static SoundManager instance;
 
     public AudioSource effectsSource;

@@ -44,6 +44,7 @@ public class CharSelectionMenu : MonoBehaviour
 		{
 			splash.gameObject.SetActive (true);
 			gameObject.SetActive (false);
+			splash.Activate ();
 		}
 
 		foreach (PlayerBtn p in players) 

@@ -14,8 +14,15 @@ public class Splash : MonoBehaviour {
 		gameObject.SetActive (true);
 		menu.gameObject.SetActive (false);
 		credits.gameObject.SetActive (false);
+
+		Activate ();
 	}
-	
+
+	public void Activate()
+	{
+//		SoundManager.Instance.PlayEffect (SoundManager.Instance.effectSplashName);
+	}
+
 	void Update () 
 	{
 		if (Input.GetKeyDown (KeyCode.C) || XCI.GetButton (XboxButton.B)) 

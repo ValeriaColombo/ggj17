@@ -13,6 +13,7 @@ public class Credits : MonoBehaviour
 			SoundManager.Instance.PlayEffect (SoundManager.Instance.effectButtonMenu);
 			gameObject.SetActive (false);
 			splash.gameObject.SetActive (true);
+			splash.Activate ();
 		}
 	}
 }

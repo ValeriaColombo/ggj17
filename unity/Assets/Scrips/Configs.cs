@@ -15,6 +15,8 @@ public class Configs : MonoBehaviour {
 		_instance = this;
 	}
 
+    public int PlayerLives = 5;
+
 	public int GameTime = 120;
 	public int TimeToPachaDoom = 15;
 

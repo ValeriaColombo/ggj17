@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        playerLives = Configs.Instance().PlayerLives;
         pickUpCooldownTime = Configs.Instance().PickUpCooldown;
         stompCooldownTime = Configs.Instance().StompCooldown;
 

@@ -9,7 +9,7 @@ public class DummyWaveGenerator : MonoBehaviour
         wavePos.y = 0f;
 		GameObject wave = GameObjectsPool.Instance().GiveMeAStompWave();
 		wave.transform.SetParent (transform.parent);
-		wave.transform.position = wavePos;
+		wave.transform.position = new Vector3(wavePos.x, 1, wavePos.z);
 	}
 	/*
 	private float cooldown = 0;

@@ -39,8 +39,9 @@ public class Wave : MonoBehaviour
 	void Update()
 	{
 		timeToLive += Time.fixedDeltaTime;
-		if (timeToLive > 2)
+		if (timeToLive > .75f)
 		{
+			timeToLive = 0;
 			GameObjectsPool.Instance ().FreeThisStompWave (gameObject);
 		}
 	}

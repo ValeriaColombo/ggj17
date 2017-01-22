@@ -81,7 +81,7 @@ public class Cow : MonoBehaviour
 
             countdown -= Time.deltaTime;
 
-			if(pushPushCount > 6)
+			if(pushPushCount > 8)
 			{
 				pushPushCount = 0;
 				countdown = Mathf.Min(countdown + 1, bombTime);

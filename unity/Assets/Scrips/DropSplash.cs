@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropSplash : MonoBehaviour {
-
+public class DropSplash : MonoBehaviour 
+{
 	private float timer = 0;
 
 	public void StartAnim ()

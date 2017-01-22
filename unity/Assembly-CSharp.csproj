@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scrips\ArmagedonSign.cs" />
      <Compile Include="Assets\Scrips\Billboard.cs" />
      <Compile Include="Assets\Scrips\Colorize.cs" />
      <Compile Include="Assets\Scrips\Configs.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Scrips\InvisibleWall.cs" />
      <Compile Include="Assets\Scrips\Lechegedon.cs" />
      <Compile Include="Assets\Scrips\Meteorite.cs" />
+     <Compile Include="Assets\Scrips\PachaMamaLechazo.cs" />
      <Compile Include="Assets\Scrips\PlayerController.cs" />
      <Compile Include="Assets\Scrips\PlayerId.cs" />
      <Compile Include="Assets\Scrips\PlayerMovement.cs" />
@@ -70,6 +72,7 @@
      <Compile Include="Assets\Scrips\Wave.cs" />
      <Compile Include="Assets\Scrips\menu\ABtnAnim.cs" />
      <Compile Include="Assets\Scrips\menu\CharSelectionMenu.cs" />
+     <Compile Include="Assets\Scrips\menu\Credits.cs" />
      <Compile Include="Assets\Scrips\menu\PlayerBtn.cs" />
      <Compile Include="Assets\Scrips\menu\Splash.cs" />
      <Compile Include="Assets\Scrips\menu\SplashGGJ.cs" />

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using XboxCtrlrInput;
 
-public class CharSelectionMenu : MonoBehaviour {
-
+public class CharSelectionMenu : MonoBehaviour 
+{
 	public Splash splash;
+	public Credits credits;
 	public float TimeMenuIddle = 30;
 	public List<PlayerBtn> players;
 
@@ -29,6 +31,13 @@ public class CharSelectionMenu : MonoBehaviour {
 
 	private void Update()
 	{
+		if (Input.GetKeyDown (KeyCode.C) || XCI.GetButton (XboxButton.B)) 
+		{
+			SoundManager.Instance.PlayEffect (SoundManager.Instance.effectButtonMenu);
+			gameObject.SetActive (false);
+			credits.gameObject.SetActive (true);
+		}
+
 		timer -= Time.fixedDeltaTime;
 
 		if (timer < 0)

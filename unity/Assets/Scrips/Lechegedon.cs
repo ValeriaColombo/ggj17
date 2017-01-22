@@ -6,6 +6,7 @@ public class Lechegedon : MonoBehaviour
 {
 	private bool letItBeRain = false;
 
+	public ArmagedonSign armagedonSign;
 	public Transform laPachaMa;
 	public GameObject teta1;
 	public GameObject teta2;
@@ -38,6 +39,7 @@ public class Lechegedon : MonoBehaviour
 		letItBeRain = true;
 	}
 
+	bool armagedonStarted = false;
 	int prob;
 	private void Update()
 	{
@@ -55,8 +57,13 @@ public class Lechegedon : MonoBehaviour
 
 			cameraTr.position = new Vector3(CamStartPos.x, CamStartPos.y, CamStartPos.z + Random.Range(-0.01f * (15-pachamamaTimer),0.01f*(15-pachamamaTimer)));
 
-			teta1.SetActive (distanceLeft < .5f);
-			teta2.SetActive (distanceLeft < .5f);
+			if (distanceLeft < 15 && !armagedonStarted) 
+			{
+				armagedonStarted = true;
+				armagedonSign.StartAnim ();
+			}
+			teta1.SetActive (distanceLeft < .1);
+			teta2.SetActive (distanceLeft < .1);
 		}
 		else
 		{

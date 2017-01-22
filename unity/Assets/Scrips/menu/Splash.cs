@@ -1,20 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 
 public class Splash : MonoBehaviour {
 
 	public CharSelectionMenu menu;
+	public Credits credits;
 
 	void Start () 
 	{
 		SoundManager.Instance.PlayMusic (SoundManager.Instance.musicMenu, true);
 		gameObject.SetActive (true);
+		menu.gameObject.SetActive (false);
+		credits.gameObject.SetActive (false);
 	}
 	
 	void Update () 
 	{
-		if (Input.anyKeyDown) 
+		if (Input.GetKeyDown (KeyCode.C) || XCI.GetButton (XboxButton.B)) 
+		{
+			SoundManager.Instance.PlayEffect (SoundManager.Instance.effectButtonMenu);
+			gameObject.SetActive (false);
+			credits.gameObject.SetActive (true);
+		}
+		else if (Input.anyKeyDown) 
 		{
 			SoundManager.Instance.PlayEffect (SoundManager.Instance.effectButtonMenu);
 			gameObject.SetActive (false);

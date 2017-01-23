@@ -256,7 +256,23 @@ public class PlayerController : MonoBehaviour
     bool IsPressingPickUp()
     {
         if (playerId.useKeyboard)
-            return Input.GetKey(KeyCode.P);
+		{
+			switch (playerId.controller)
+			{
+				case XboxController.First:
+					return Input.GetButton("Pick1");
+					break;
+				case XboxController.Second:
+					return Input.GetButton("Pick2");
+					break;
+					case XboxController.Third:
+					return Input.GetButton("Pick3");
+					break;
+				case XboxController.Fourth:
+					return Input.GetButton("Pick4");
+					break;
+			}
+		}
         else
 			return XCI.GetAxis(XboxAxis.RightTrigger, playerId.controller) > 0.5f && XCI.GetAxis(XboxAxis.LeftTrigger, playerId.controller) > 0.5f;
     }

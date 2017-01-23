@@ -101,7 +101,15 @@ public class PlayerController : MonoBehaviour
 
     void UpdateStomper()
     {
-        CheckStomp();
+		if(playerId.useKeyboard)
+		{
+			CheckStompKeyboard();
+		}
+		else
+		{
+			CheckStomp();
+		}
+		
         UpdateStompCoolDown();
     }
 
@@ -122,6 +130,25 @@ public class PlayerController : MonoBehaviour
             hitMin = false;
         }
     }
+	
+	void CheckStompKeyboard()
+	{
+		switch (playerId.controller)
+        {
+            case XboxController.First:
+				if(Input.GetButtonUp("Stomp1")) Stomp();
+                break;
+            case XboxController.Second:
+				if(Input.GetButtonUp("Stomp2")) Stomp();
+                break;
+				case XboxController.Third:
+				if(Input.GetButtonUp("Stomp3")) Stomp();
+                break;
+            case XboxController.Fourth:
+				if(Input.GetButtonUp("Stomp4")) Stomp();
+                break;
+        }
+	}
 
     public void PushBombs()
     {

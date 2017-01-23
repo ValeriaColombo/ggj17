@@ -68,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
             walkAudioSource.loop = true;
             walkAudioSource.Play();
             walkAudioSource.volume = holding ? 0.25f : 0.5f;
-            print("called play");
         }
         else
         {
@@ -100,6 +99,14 @@ public class PlayerMovement : MonoBehaviour
             case XboxController.Second:
                 horizontalAxis = Input.GetAxis("Horizontal2") * Time.deltaTime * speed;
                 verticalAxis = -Input.GetAxis("Vertical2") * Time.deltaTime * speed;
+                break;
+				case XboxController.Third:
+                horizontalAxis = Input.GetAxis("Horizontal3") * Time.deltaTime * speed;
+                verticalAxis = -Input.GetAxis("Vertical3") * Time.deltaTime * speed;
+                break;
+            case XboxController.Fourth:
+                horizontalAxis = Input.GetAxis("Horizontal4") * Time.deltaTime * speed;
+                verticalAxis = -Input.GetAxis("Vertical4") * Time.deltaTime * speed;
                 break;
         }
     }

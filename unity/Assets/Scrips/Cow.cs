@@ -74,7 +74,7 @@ public class Cow : MonoBehaviour
 
         if (countdown > 0)
         {
-			if (pickUp.playerController != null && XCI.GetButtonUp (XboxButton.A, pickUp.playerController.playerId.controller)) 
+			if (pickUp.playerController != null && ResetTimerButtonUp()) 
 			{
 				pushPushCount++;
 			}
@@ -95,6 +95,32 @@ public class Cow : MonoBehaviour
         }
     }
 
+	bool ResetTimerButtonUp()
+	{
+		if(pickUp.playerController.playerId.useKeyboard)
+		{
+			switch (pickUp.playerController.playerId.controller)
+			{
+				case XboxController.First:
+					return Input.GetButtonUp("Mash1");
+					break;
+				case XboxController.Second:
+					return Input.GetButtonUp("Mash2");
+					break;
+					case XboxController.Third:
+					return Input.GetButtonUp("Mash3");
+					break;
+				case XboxController.Fourth:
+					return Input.GetButtonUp("Mash4");
+					break;
+			}
+		}
+		else
+		{
+			return XCI.GetButtonUp(XboxButton.A, pickUp.playerController.playerId.controller);
+		}
+	}
+	
     void UpdateBar(float normVal)
     {
         if (state == CowState.EXPLODING) return;

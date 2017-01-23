@@ -23,4 +23,11 @@ public class PlayerId : MonoBehaviour
     public bool useKeyboard;
     public PlayerMode playerMode;
     public XboxController controller;
+	
+	void Awake()
+	{
+		int queriedNumberOfCtrlrs = XCI.GetNumPluggedCtrlrs();
+		
+		useKeyboard = (int)controller <= queriedNumberOfCtrlrs ? false : true;
+	}
 }

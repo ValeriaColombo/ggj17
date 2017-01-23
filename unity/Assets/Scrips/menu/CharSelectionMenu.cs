@@ -11,10 +11,21 @@ public class CharSelectionMenu : MonoBehaviour
 	public float TimeMenuIddle = 30;
 	public List<PlayerBtn> players;
 
+	public GameObject keyb1;
+	public GameObject keyb2;
+	public GameObject keyb3;
+	public GameObject keyb4;
+
 	private float timer;
 
 	public void OpenScreen ()
 	{
+		int queriedNumberOfCtrlrs = XCI.GetNumPluggedCtrlrs();
+		keyb1.SetActive (queriedNumberOfCtrlrs < 1);
+		keyb4.SetActive (queriedNumberOfCtrlrs < 2);
+		keyb2.SetActive (queriedNumberOfCtrlrs < 3);
+		keyb3.SetActive (queriedNumberOfCtrlrs < 4);
+
 		foreach (PlayerBtn p in players) 
 		{
 			p.ResetTimerCallback = ResetTimer;
@@ -31,7 +42,7 @@ public class CharSelectionMenu : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.C) || XCI.GetButton (XboxButton.B)) 
+		if (Input.GetKeyDown (KeyCode.B) || XCI.GetButton (XboxButton.B)) 
 		{
 			SoundManager.Instance.PlayEffect (SoundManager.Instance.effectButtonMenu);
 			gameObject.SetActive (false);

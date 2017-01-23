@@ -135,13 +135,13 @@ public class PlayerController : MonoBehaviour
 	{
 		switch (playerId.controller)
         {
-            case XboxController.First:
-				if(Input.GetButtonUp("Stomp1")) Stomp();
-                break;
-            case XboxController.Second:
-				if(Input.GetButtonUp("Stomp2")) Stomp();
-                break;
-				case XboxController.Third:
+//            case XboxController.First:
+//				if(Input.GetButtonUp("Stomp1")) Stomp();
+//                break;
+//            case XboxController.Second:
+//				if(Input.GetButtonUp("Stomp2")) Stomp();
+//                break;
+			case XboxController.Third:
 				if(Input.GetButtonUp("Stomp3")) Stomp();
                 break;
             case XboxController.Fourth:
@@ -271,6 +271,8 @@ public class PlayerController : MonoBehaviour
 				case XboxController.Fourth:
 					return Input.GetButton("Pick4");
 					break;
+				default:
+					return false;
 			}
 		}
         else

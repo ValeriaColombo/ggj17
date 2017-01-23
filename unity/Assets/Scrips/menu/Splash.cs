@@ -25,7 +25,7 @@ public class Splash : MonoBehaviour {
 
 	void Update () 
 	{
-		if (Input.GetKeyDown (KeyCode.C) || XCI.GetButton (XboxButton.B)) 
+		if (Input.GetKeyDown (KeyCode.B) || XCI.GetButton (XboxButton.B)) 
 		{
 			SoundManager.Instance.PlayEffect (SoundManager.Instance.effectButtonMenu);
 			gameObject.SetActive (false);

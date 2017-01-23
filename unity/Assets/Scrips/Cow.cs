@@ -107,18 +107,20 @@ public class Cow : MonoBehaviour
 				case XboxController.Second:
 					return Input.GetButtonUp("Mash2");
 					break;
-					case XboxController.Third:
-					return Input.GetButtonUp("Mash3");
-					break;
-				case XboxController.Fourth:
-					return Input.GetButtonUp("Mash4");
-					break;
+//				case XboxController.Third:
+//					return Input.GetButtonUp("Mash3");
+//					break;
+//				case XboxController.Fourth:
+//					return Input.GetButtonUp("Mash4");
+//					break;
 			}
 		}
 		else
 		{
 			return XCI.GetButtonUp(XboxButton.A, pickUp.playerController.playerId.controller);
 		}
+
+		return false;
 	}
 	
     void UpdateBar(float normVal)

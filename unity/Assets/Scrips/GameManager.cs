@@ -96,6 +96,6 @@ public class GameManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds (2);
 		SoundManager.Instance.PlayMusic (SoundManager.Instance.musicGameOver, false);
-		gameOver.ShowGameOver (team == PlayerTeam.BLUE_TEAM);
+		gameOver.ShowGameOver (team == PlayerTeam.RED_TEAM);
 	}
 }

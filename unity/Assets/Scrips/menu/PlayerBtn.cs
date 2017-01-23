@@ -32,7 +32,7 @@ public class PlayerBtn : MonoBehaviour
 		if (isReady)
 			return;
 		
-		if(Input.GetKeyDown(keyboardKeyToStart) || XCI.GetButton(XboxButton.A, controller))
+		if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(keyboardKeyToStart) || XCI.GetButton(XboxButton.A, controller))
 		{
 			ResetTimerCallback ();
 

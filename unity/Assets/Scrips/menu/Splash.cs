@@ -31,6 +31,10 @@ public class Splash : MonoBehaviour {
 			gameObject.SetActive (false);
 			credits.gameObject.SetActive (true);
 		}
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 		else if (Input.anyKeyDown) 
 		{
 			SoundManager.Instance.PlayEffect (SoundManager.Instance.effectButtonMenu);

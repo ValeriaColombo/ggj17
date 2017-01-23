@@ -22,9 +22,9 @@ public class CharSelectionMenu : MonoBehaviour
 	{
 		int queriedNumberOfCtrlrs = XCI.GetNumPluggedCtrlrs();
 		keyb1.SetActive (queriedNumberOfCtrlrs < 1);
-		keyb4.SetActive (queriedNumberOfCtrlrs < 2);
-		keyb2.SetActive (queriedNumberOfCtrlrs < 3);
-		keyb3.SetActive (queriedNumberOfCtrlrs < 4);
+		keyb2.SetActive (queriedNumberOfCtrlrs < 2);
+		keyb3.SetActive (queriedNumberOfCtrlrs < 3);
+		keyb4.SetActive (queriedNumberOfCtrlrs < 4);
 
 		foreach (PlayerBtn p in players) 
 		{
@@ -42,6 +42,11 @@ public class CharSelectionMenu : MonoBehaviour
 
 	private void Update()
 	{
+        if(Input.GetKeyDown(KeyCode.Escape) && !credits.gameObject.activeInHierarchy)
+        {
+            Application.Quit();
+        }
+
 		if (Input.GetKeyDown (KeyCode.B) || XCI.GetButton (XboxButton.B)) 
 		{
 			SoundManager.Instance.PlayEffect (SoundManager.Instance.effectButtonMenu);
